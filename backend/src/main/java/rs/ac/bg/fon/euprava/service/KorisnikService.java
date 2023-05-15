@@ -31,4 +31,8 @@ public class KorisnikService {
     public Korisnik getTrenutnoUlogovani() {
         return (Korisnik) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
+
+    public Korisnik sacuvaj(Korisnik korisnik) {
+        return korisnikRepository.save(korisnik);
+    }
 }

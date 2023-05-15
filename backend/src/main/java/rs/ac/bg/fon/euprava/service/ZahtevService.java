@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.euprava.domain.*;
-import rs.ac.bg.fon.euprava.repository.KorisnikRepository;
 import rs.ac.bg.fon.euprava.repository.OdgovorRepository;
 import rs.ac.bg.fon.euprava.repository.StatistikaRepository;
 import rs.ac.bg.fon.euprava.repository.ZahtevRepository;
@@ -28,7 +27,6 @@ public class ZahtevService {
     private final OdgovorRepository odgovorRepository;
     private final StatistikaRepository statistikaRepository;
     private final LicnaKartaService licnaKartaService;
-    private final KorisnikRepository korisnikRepository;
     private final UpozorenjeService upozorenjeService;
 
     public Page<Zahtev> getAll(Pageable pageable) {
@@ -68,7 +66,21 @@ public class ZahtevService {
     }
 
     public Page<Zahtev> getAllByTipUsluge(TipUsluge tipUsluge, Pageable pageable) {
-        return zahtevRepository.findByTipUsluge(tipUsluge, pageable);
+        Korisnik trenutnoUlogovani = korisnikService.getTrenutnoUlogovani();
+        if(trenutnoUlogovani.getRole().equals(ADMIN)){
+            return zahtevRepository.findByTipUsluge(tipUsluge, pageable);
+        } else {
+            return zahtevRepository.findByPodnosilacIdAndTipUsluge(trenutnoUlogovani.getId(), tipUsluge, pageable);
+        }
+    }
+
+    public Page<Zahtev> getAllByStatusZahteva(StatusZahteva statusZahteva, Pageable pageable) {
+        Korisnik trenutnoUlogovani = korisnikService.getTrenutnoUlogovani();
+        if(trenutnoUlogovani.getRole().equals(ADMIN)){
+            return zahtevRepository.findByStatusZahteva(statusZahteva, pageable);
+        } else {
+            return zahtevRepository.findByPodnosilacIdAndStatusZahteva(trenutnoUlogovani.getId(), statusZahteva, pageable);
+        }
     }
 
     public Page<Zahtev> getAllByKorisnik(Long korisnikId, Pageable pageable) {
@@ -102,7 +114,7 @@ public class ZahtevService {
         obrisiUpozorenjeZaLicnuKartu(podnosilac.getId(), podnosilac.getLicnaKarta().getId());
 
         podnosilac.setLicnaKarta(novaLicnaKarta);
-        korisnikRepository.save(podnosilac);
+        korisnikService.sacuvaj(podnosilac);
 
         Odgovor odgovor = Odgovor.builder()
                 .sadrzaj("Uspesno ste dobili novu licnu kartu: " + novaLicnaKarta)
@@ -129,7 +141,7 @@ public class ZahtevService {
         obrisiUpozorenjeZaPasos(podnosilac.getId(), podnosilac.getPasos().getId());
 
         podnosilac.setPasos(noviPasos);
-        korisnikRepository.save(podnosilac);
+        korisnikService.sacuvaj(podnosilac);
 
         Odgovor odgovor = Odgovor.builder()
                 .sadrzaj("Uspesno ste dobili novi pasos: " + noviPasos)

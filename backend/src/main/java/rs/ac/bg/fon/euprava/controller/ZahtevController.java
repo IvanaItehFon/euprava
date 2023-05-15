@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.bg.fon.euprava.domain.Odgovor;
+import rs.ac.bg.fon.euprava.domain.StatusZahteva;
 import rs.ac.bg.fon.euprava.domain.TipUsluge;
 import rs.ac.bg.fon.euprava.domain.Zahtev;
 import rs.ac.bg.fon.euprava.service.ZahtevService;
@@ -35,6 +36,11 @@ public class ZahtevController {
     @GetMapping("/tipUsluge/{tipUsluge}")
     public Page<Zahtev> getAllByTipUsluge(@PathVariable TipUsluge tipUsluge, Pageable pageable) {
         return zahtevService.getAllByTipUsluge(tipUsluge, pageable);
+    }
+
+    @GetMapping("/statusZahteva/{statusZahteva}")
+    public Page<Zahtev> getAllByStatusZahteva(@PathVariable StatusZahteva statusZahteva, Pageable pageable) {
+        return zahtevService.getAllByStatusZahteva(statusZahteva, pageable);
     }
 
     @GetMapping("/podnosilac/{podnosilacId}")
