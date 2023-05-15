@@ -29,11 +29,12 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/v1/seed*").permitAll()
 
-                        .requestMatchers(HttpMethod.POST, "/api/v1/obavestenja/**").hasAuthority(ADMIN.getAuthority())
+                        .requestMatchers(HttpMethod.POST, "/api/v1/obavestenja/*").hasAuthority(ADMIN.getAuthority())
 
                         .requestMatchers(HttpMethod.POST, "/api/v1/zahtevi").hasAuthority(KORISNIK.getAuthority())
-                        .requestMatchers(HttpMethod.POST, "/api/v1/zahtevi/**/razresi").hasAuthority(ADMIN.getAuthority())
+                        .requestMatchers(HttpMethod.POST, "/api/v1/zahtevi/*/razresi").hasAuthority(ADMIN.getAuthority())
 
                         .anyRequest().authenticated())
                 .sessionManagement()

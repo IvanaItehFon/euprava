@@ -18,6 +18,7 @@ public class Odgovor {
     @GeneratedValue
     private Long id;
 
+    @Column(length = 2047)
     private String sadrzaj;
 
     @OneToOne

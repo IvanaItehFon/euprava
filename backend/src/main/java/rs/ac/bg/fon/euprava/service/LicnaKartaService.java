@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.euprava.domain.Korisnik;
 import rs.ac.bg.fon.euprava.domain.LicnaKarta;
+import rs.ac.bg.fon.euprava.repository.KorisnikRepository;
 import rs.ac.bg.fon.euprava.repository.LicnaKartaRepository;
 
 import java.time.LocalDate;
@@ -14,17 +15,19 @@ import java.util.NoSuchElementException;
 public class LicnaKartaService {
 
     private final LicnaKartaRepository licnaKartaRepository;
-
-    public void invalidirajTrenutnuLicnuKartu(Korisnik korisnik) {
-        LicnaKarta licnaKarta = licnaKartaRepository.findByKorisnikId(korisnik.getId()).orElseThrow(NoSuchElementException::new);
-        licnaKarta.setDatumVazenja(LocalDate.now());
-    }
+    private final KorisnikRepository korisnikRepository;
 
     public LicnaKarta sacuvajLicnuKartu(LicnaKarta licnaKarta) {
         return licnaKartaRepository.save(licnaKarta);
     }
 
+    public void invalidirajTrenutnuLicnuKartu(Korisnik korisnik) {
+        LicnaKarta licnaKarta = getByKorisnik(korisnik);
+//        LicnaKarta licnaKarta = licnaKartaRepository.findByVlasnikId(korisnik.getId()).orElseThrow(NoSuchElementException::new);
+        licnaKarta.setDatumVazenja(LocalDate.now());
+    }
+
     public LicnaKarta getByKorisnik(Korisnik korisnik) {
-        return licnaKartaRepository.findByKorisnikId(korisnik.getId()).orElseThrow(NoSuchElementException::new);
+        return korisnikRepository.findById(korisnik.getId()).orElseThrow(NoSuchElementException::new).getLicnaKarta();
     }
 }

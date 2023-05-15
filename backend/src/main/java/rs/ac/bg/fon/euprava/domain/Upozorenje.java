@@ -22,6 +22,7 @@ public class Upozorenje {
 
     private LocalDateTime vreme;
 
+    @Column(length = 2047)
     private String sadrzaj;
 
     @ManyToOne
@@ -29,11 +30,11 @@ public class Upozorenje {
     private Korisnik korisnik;
 
     @OneToOne
-    @JoinColumn(name = "broj_pasosa")
+    @JoinColumn(name = "pasos_id")
     private Pasos pasos;
 
     @OneToOne
-    @JoinColumn(name = "broj_licne_karte")
+    @JoinColumn(name = "licna_karta_id")
     private LicnaKarta licnaKarta;
 
     //slanje na email

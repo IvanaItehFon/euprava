@@ -25,12 +25,12 @@ public class LicnaKarta {
     @NaturalId
     private Long brojLicneKarte;
 
-    @OneToOne
-    @JoinColumn(name = "korisnik_id")
-    private Korisnik korisnik;
-
     private LocalDate datumIzdavanja;
 
     private LocalDate datumVazenja;
+
+    @OneToOne
+    @JoinColumn(name = "vlasnik_id")
+    private Korisnik vlasnik;
 
 }

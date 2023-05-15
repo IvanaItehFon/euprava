@@ -19,6 +19,7 @@ public class Zahtev {
     @GeneratedValue
     private Long id;
 
+    @Column(length = 2047)
     private String sadrzaj;
 
     private LocalDateTime vremePodnosenja;

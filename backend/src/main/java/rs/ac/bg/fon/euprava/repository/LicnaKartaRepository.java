@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface LicnaKartaRepository extends JpaRepository<LicnaKarta, Long> {
-    Optional<LicnaKarta> findByKorisnikId(Long korisnikId);
+    Optional<LicnaKarta> findByVlasnikId(Long vlasnikId);
 }

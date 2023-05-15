@@ -1,5 +1,6 @@
 package rs.ac.bg.fon.euprava.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,6 +25,7 @@ public class Obavestenje {
 
     private LocalDate vremeObjavljivanja;
 
+    @Column(length = 2047)
     private String sadrzaj;
 
 }

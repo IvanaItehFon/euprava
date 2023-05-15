@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
-@ToString
+@ToString(exclude = {"pasos", "licnaKarta", "password"})
 public class Korisnik implements UserDetails {
     @Id
     @GeneratedValue
@@ -42,6 +42,16 @@ public class Korisnik implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToOne
+    @JoinColumn(name = "pasos_id")
+    @JsonIgnore
+    private Pasos pasos;
+
+    @OneToOne
+    @JoinColumn(name = "licna_karta_id")
+    @JsonIgnore
+    private LicnaKarta licnaKarta;
 
 
     @Override

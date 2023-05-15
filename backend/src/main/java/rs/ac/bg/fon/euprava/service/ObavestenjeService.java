@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.euprava.domain.Obavestenje;
 import rs.ac.bg.fon.euprava.repository.ObavestenjeRepository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.NoSuchElementException;
 
 @Service
@@ -25,7 +25,7 @@ public class ObavestenjeService {
     }
 
     public Obavestenje postaviObavestenje(Obavestenje obavestenje) {
-        obavestenje.setVremeObjavljivanja(LocalDateTime.now());
+        obavestenje.setVremeObjavljivanja(LocalDate.now());
         return obavestenjeRepository.save(obavestenje);
     }
 }

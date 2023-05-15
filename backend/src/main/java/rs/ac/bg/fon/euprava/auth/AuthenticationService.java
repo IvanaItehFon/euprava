@@ -31,6 +31,20 @@ public class AuthenticationService {
     private final PasosRepository pasosRepository;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        Pasos pasos = Pasos.builder()
+                .brojPasosa(request.getPasos().getBrojPasosa())
+                .datumIzdavanja(request.getPasos().getDatumIzdavanja())
+                .datumVazenja(request.getPasos().getDatumVazenja())
+                .build();
+        Pasos sacuvaniPasos = pasosRepository.save(pasos);
+
+        LicnaKarta licnaKarta = LicnaKarta.builder()
+                .datumIzdavanja(request.getLicnaKarta().getDatumIzdavanja())
+                .datumVazenja(request.getLicnaKarta().getDatumIzdavanja())
+                .brojLicneKarte(request.getLicnaKarta().getBrojLicneKarte())
+                .build();
+        LicnaKarta sacuvanaLicnaKarta = licnaKartaRepository.save(licnaKarta);
+
         var korisnik = Korisnik.builder()
                 .ime(request.getIme())
                 .prezime(request.getPrezime())
@@ -40,24 +54,16 @@ public class AuthenticationService {
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.KORISNIK)
+                .pasos(sacuvaniPasos)
+                .licnaKarta(sacuvanaLicnaKarta)
                 .build();
-        korisnikRepository.save(korisnik);
+        Korisnik sacuvaniKorisnik = korisnikRepository.save(korisnik);
 
-        LicnaKarta licnaKarta = LicnaKarta.builder()
-                .datumIzdavanja(request.getLicnaKarta().getDatumIzdavanja())
-                .datumVazenja(request.getLicnaKarta().getDatumIzdavanja())
-                .brojLicneKarte(request.getLicnaKarta().getBrojLicneKarte())
-                .korisnik(korisnik)
-                .build();
-        licnaKartaRepository.save(licnaKarta);
+        sacuvaniPasos.setVlasnik(sacuvaniKorisnik);
+        pasosRepository.save(sacuvaniPasos);
 
-        Pasos pasos = Pasos.builder()
-                .brojPasosa(request.getPasos().getBrojPasosa())
-                .datumIzdavanja(request.getPasos().getDatumIzdavanja())
-                .datumVazenja(request.getPasos().getDatumVazenja())
-                .korisnik(korisnik)
-                .build();
-        pasosRepository.save(pasos);
+        sacuvanaLicnaKarta.setVlasnik(sacuvaniKorisnik);
+        licnaKartaRepository.save(sacuvanaLicnaKarta);
 
         var jwtToken = jwtService.generateToken(korisnik);
         return new AuthenticationResponse(jwtToken, Role.KORISNIK);

@@ -12,6 +12,7 @@ import rs.ac.bg.fon.euprava.repository.UpozorenjeRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 
 import static rs.ac.bg.fon.euprava.domain.Role.ADMIN;
 
@@ -77,5 +78,15 @@ public class UpozorenjeService {
                     .build();
             upozorenjeRepository.save(upozorenje);
         }
+    }
+
+    public void obrisiUpozorenjeZaLicnuKartu(Long korisnikId, Long licnaKartaId) {
+        Upozorenje upozorenje = upozorenjeRepository.findByKorisnikIdAndLicnaKartaId(korisnikId, licnaKartaId).orElseThrow(NoSuchElementException::new);
+        upozorenjeRepository.delete(upozorenje);
+    }
+
+    public void obrisiUpozorenjeZaPasos(Long korisnikId, Long pasosId) {
+        Upozorenje upozorenje = upozorenjeRepository.findByKorisnikIdAndPasosId(korisnikId, pasosId).orElseThrow(NoSuchElementException::new);
+        upozorenjeRepository.delete(upozorenje);
     }
 }
