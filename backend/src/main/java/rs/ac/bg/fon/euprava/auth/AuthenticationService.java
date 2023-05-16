@@ -40,7 +40,7 @@ public class AuthenticationService {
 
         LicnaKarta licnaKarta = LicnaKarta.builder()
                 .datumIzdavanja(request.getLicnaKarta().getDatumIzdavanja())
-                .datumVazenja(request.getLicnaKarta().getDatumIzdavanja())
+                .datumVazenja(request.getLicnaKarta().getDatumVazenja())
                 .brojLicneKarte(request.getLicnaKarta().getBrojLicneKarte())
                 .build();
         LicnaKarta sacuvanaLicnaKarta = licnaKartaRepository.save(licnaKarta);
