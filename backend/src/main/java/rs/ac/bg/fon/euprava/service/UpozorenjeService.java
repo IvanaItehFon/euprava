@@ -89,4 +89,8 @@ public class UpozorenjeService {
         Upozorenje upozorenje = upozorenjeRepository.findByKorisnikIdAndPasosId(korisnikId, pasosId).orElseThrow(NoSuchElementException::new);
         upozorenjeRepository.delete(upozorenje);
     }
+
+    public Page<Upozorenje> getAllZaKorisnika(Long korisnikId, Pageable pageable) {
+        return upozorenjeRepository.findByKorisnikId(korisnikId, pageable);
+    }
 }

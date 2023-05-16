@@ -30,4 +30,9 @@ public class ObavestenjeController {
     public Obavestenje postaviObavestenje(@RequestBody Obavestenje obavestenje) {
         return obavestenjeService.postaviObavestenje(obavestenje);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteObavestenje(@PathVariable Long id) {
+        obavestenjeService.deleteObavestenje(id);
+    }
 }

@@ -28,4 +28,8 @@ public class ObavestenjeService {
         obavestenje.setVremeObjavljivanja(LocalDate.now());
         return obavestenjeRepository.save(obavestenje);
     }
+
+    public void deleteObavestenje(Long id) {
+        obavestenjeRepository.deleteById(id);
+    }
 }

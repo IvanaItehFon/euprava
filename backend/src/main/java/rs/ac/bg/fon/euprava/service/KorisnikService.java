@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.euprava.domain.Korisnik;
+import rs.ac.bg.fon.euprava.domain.LicnaKarta;
+import rs.ac.bg.fon.euprava.domain.Pasos;
 import rs.ac.bg.fon.euprava.repository.KorisnikRepository;
 
 import java.util.NoSuchElementException;
@@ -34,5 +36,15 @@ public class KorisnikService {
 
     public Korisnik sacuvaj(Korisnik korisnik) {
         return korisnikRepository.save(korisnik);
+    }
+
+    public LicnaKarta getLicnaKartaZaKorisnika(Long korisnikId) {
+        Korisnik korisnik = getKorisnikById(korisnikId);
+        return korisnik.getLicnaKarta();
+    }
+
+    public Pasos getPasosZaKorisnika(Long korisnikId) {
+        Korisnik korisnik = getKorisnikById(korisnikId);
+        return korisnik.getPasos();
     }
 }
