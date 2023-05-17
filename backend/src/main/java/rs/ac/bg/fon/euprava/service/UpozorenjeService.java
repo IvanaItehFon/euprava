@@ -13,6 +13,7 @@ import rs.ac.bg.fon.euprava.repository.UpozorenjeRepository;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static rs.ac.bg.fon.euprava.domain.Role.ADMIN;
 
@@ -27,7 +28,7 @@ public class UpozorenjeService {
 
     public Page<Upozorenje> getAll(Pageable pageable) {
         Korisnik trenutnoUlogovani = korisnikService.getTrenutnoUlogovani();
-        if(trenutnoUlogovani.getRole().equals(ADMIN)) {
+        if (trenutnoUlogovani.getRole().equals(ADMIN)) {
             return upozorenjeRepository.findAll(pageable);
         }
         return upozorenjeRepository.findByKorisnikId(trenutnoUlogovani.getId(), pageable);
@@ -41,13 +42,13 @@ public class UpozorenjeService {
     private void proveriLicnuKartu(Korisnik korisnik) {
         LicnaKarta licnaKarta = licnaKartaService.getByKorisnik(korisnik);
 
-        if(upozorenjeRepository.existsByKorisnikIdAndLicnaKartaId(korisnik.getId(), licnaKarta.getId())) {
+        if (upozorenjeRepository.existsByKorisnikIdAndLicnaKartaId(korisnik.getId(), licnaKarta.getId())) {
             return;
         }
 
         LocalDate vremeUpozorenja = licnaKarta.getDatumVazenja().minusDays(3);
 
-        if(LocalDate.now().isAfter(vremeUpozorenja)) {
+        if (LocalDate.now().isAfter(vremeUpozorenja)) {
             Upozorenje upozorenje = Upozorenje.builder()
                     .vreme(LocalDateTime.now())
                     .sadrzaj("Postovani, istice vam licna karta datuma: " + licnaKarta.getDatumVazenja()
@@ -62,17 +63,17 @@ public class UpozorenjeService {
     private void proveriPasos(Korisnik korisnik) {
         Pasos pasos = pasosService.getByKorisnik(korisnik);
 
-        if(upozorenjeRepository.existsByKorisnikIdAndPasosId(korisnik.getId(), pasos.getId())) {
+        if (upozorenjeRepository.existsByKorisnikIdAndPasosId(korisnik.getId(), pasos.getId())) {
             return;
         }
 
         LocalDate vremeUpozorenja = pasos.getDatumVazenja().minusDays(3);
 
-        if(LocalDate.now().isAfter(vremeUpozorenja)) {
+        if (LocalDate.now().isAfter(vremeUpozorenja)) {
             Upozorenje upozorenje = Upozorenje.builder()
                     .vreme(LocalDateTime.now())
                     .sadrzaj("Postovani, istice vam pasos datuma: " + pasos.getDatumVazenja()
-                    + "\nMolim zatrazite izdavanje novog pasosa!")
+                            + "\nMolim zatrazite izdavanje novog pasosa!")
                     .pasos(pasos)
                     .korisnik(korisnik)
                     .build();
@@ -81,12 +82,20 @@ public class UpozorenjeService {
     }
 
     public void obrisiUpozorenjeZaLicnuKartu(Long korisnikId, Long licnaKartaId) {
-        Upozorenje upozorenje = upozorenjeRepository.findByKorisnikIdAndLicnaKartaId(korisnikId, licnaKartaId).orElseThrow(NoSuchElementException::new);
+        Optional<Upozorenje> upozorenjeOptional = upozorenjeRepository.findByKorisnikIdAndLicnaKartaId(korisnikId, licnaKartaId);
+        if (upozorenjeOptional.isEmpty()) {
+            return;
+        }
+        Upozorenje upozorenje = upozorenjeOptional.orElseThrow(NoSuchElementException::new);
         upozorenjeRepository.delete(upozorenje);
     }
 
     public void obrisiUpozorenjeZaPasos(Long korisnikId, Long pasosId) {
-        Upozorenje upozorenje = upozorenjeRepository.findByKorisnikIdAndPasosId(korisnikId, pasosId).orElseThrow(NoSuchElementException::new);
+        Optional<Upozorenje> upozorenjeOptional = upozorenjeRepository.findByKorisnikIdAndPasosId(korisnikId, pasosId);
+        if (upozorenjeOptional.isEmpty()) {
+            return;
+        }
+        Upozorenje upozorenje = upozorenjeOptional.get();
         upozorenjeRepository.delete(upozorenje);
     }
 

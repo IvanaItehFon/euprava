@@ -24,6 +24,8 @@ public class Zahtev {
 
     private LocalDateTime vremePodnosenja;
 
+    private LocalDateTime vremeRazresavanja;
+
     @ManyToOne
     @JoinColumn(name = "podnosilac_id")
     private Korisnik podnosilac;

@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.euprava.domain.*;
 import rs.ac.bg.fon.euprava.repository.OdgovorRepository;
-import rs.ac.bg.fon.euprava.repository.StatistikaRepository;
 import rs.ac.bg.fon.euprava.repository.ZahtevRepository;
 
 import java.time.LocalDate;
@@ -25,7 +24,6 @@ public class ZahtevService {
     private final ZahtevRepository zahtevRepository;
     private final PasosService pasosService;
     private final OdgovorRepository odgovorRepository;
-    private final StatistikaRepository statistikaRepository;
     private final LicnaKartaService licnaKartaService;
     private final UpozorenjeService upozorenjeService;
 
@@ -42,12 +40,6 @@ public class ZahtevService {
         if (trenutnoUlogovaniKorisnik.getRole().equals(ADMIN)) {
             if (zahtev.getStatusZahteva().equals(StatusZahteva.PRIMLJEN)) {
                 zahtev.setStatusZahteva(StatusZahteva.U_OBRADI);
-                StatistikaObrade statistikaObrade = StatistikaObrade.builder()
-                        .pocetkaObrade(LocalDateTime.now())
-                        .obradjeno(false)
-                        .zahtev(zahtev)
-                        .build();
-                statistikaRepository.save(statistikaObrade);
             }
             return zahtev;
         }
@@ -164,11 +156,7 @@ public class ZahtevService {
 
     private void razresiStatus(Zahtev zahtev) {
         zahtev.setStatusZahteva(StatusZahteva.RAZRESENO);
+        zahtev.setVremeRazresavanja(LocalDateTime.now());
         zahtevRepository.save(zahtev);
-
-        StatistikaObrade statistikaObrade = statistikaRepository.findByZahtevId(zahtev.getId()).orElseThrow(NoSuchElementException::new);
-        statistikaObrade.setKrajObrade(LocalDateTime.now());
-        statistikaObrade.setObradjeno(true);
-        statistikaRepository.save(statistikaObrade);
     }
 }
