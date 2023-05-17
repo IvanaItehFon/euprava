@@ -23,7 +23,6 @@ public class LicnaKartaService {
 
     public void invalidirajTrenutnuLicnuKartu(Korisnik korisnik) {
         LicnaKarta licnaKarta = getByKorisnik(korisnik);
-//        LicnaKarta licnaKarta = licnaKartaRepository.findByVlasnikId(korisnik.getId()).orElseThrow(NoSuchElementException::new);
         licnaKarta.setDatumVazenja(LocalDate.now());
     }
 

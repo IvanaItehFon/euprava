@@ -17,7 +17,7 @@ public class ObavestenjeService {
     private final ObavestenjeRepository obavestenjeRepository;
 
     public Page<Obavestenje> getAll(Pageable pageable) {
-        return obavestenjeRepository.findAll(pageable); //.stream().sorted(Comparator.comparing(Obavestenje::getVremeObjavljivanja).reversed());
+        return obavestenjeRepository.findAll(pageable);
     }
 
     public Obavestenje getById(long id) {

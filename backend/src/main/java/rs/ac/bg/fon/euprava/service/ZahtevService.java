@@ -85,7 +85,6 @@ public class ZahtevService {
         return switch (zahtev.getTipUsluge()) {
             case IZDAVANJE_PASOSA -> razresiPasos(zahtev);
             case IZDAVANJE_LICNE_KARTE -> razresiLicnuKartu(zahtev);
-            case PITANJA -> razresiPitanje(zahtev);
         };
     }
 
@@ -148,10 +147,6 @@ public class ZahtevService {
     }
     private void obrisiUpozorenjeZaPasos(Long korisnikId, Long pasosId) {
         upozorenjeService.obrisiUpozorenjeZaPasos(korisnikId, pasosId);
-    }
-
-    private Odgovor razresiPitanje(Zahtev zahtev) {
-        return Odgovor.builder().sadrzaj("Ne znam kako odgovor").build();
     }
 
     private void razresiStatus(Zahtev zahtev) {

@@ -23,7 +23,6 @@ public class PasosService {
 
     public void invalidirajTrenutniPasos(Korisnik korisnik) {
         Pasos pasos = getByKorisnik(korisnik);
-//        Pasos pasos = pasosRepository.findByKorisnikId(korisnik.getId()).orElseThrow(NoSuchElementException::new);
         if(pasos.getDatumVazenja().isAfter(LocalDate.now())) {
             pasos.setDatumVazenja(LocalDate.now());
         }
@@ -31,6 +30,5 @@ public class PasosService {
 
     public Pasos getByKorisnik(Korisnik korisnik) {
         return korisnikRepository.findById(korisnik.getId()).orElseThrow(NoSuchElementException::new).getPasos();
-//        return pasosRepository.findByKorisnikId(korisnik.getId()).orElseThrow(NoSuchElementException::new);
     }
 }
