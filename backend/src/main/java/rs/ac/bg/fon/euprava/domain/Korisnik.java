@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"pasos", "licnaKarta"})
 @ToString(exclude = {"pasos", "licnaKarta", "password"})
 public class Korisnik implements UserDetails {
     @Id
