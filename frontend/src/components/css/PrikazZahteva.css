@@ -1,0 +1,45 @@
+.prikaz-zahteva-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: right;
+    background-color: #007bff;
+    width: 500px;
+    height: 350px;
+    border-radius: 8px;
+  }
+  
+  .prikaz-zahteva-container h1 {
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  .podaci-zahtev {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+  
+  .podaci-zahtev p {
+    margin: 0;
+    padding: 5px;
+  }
+  
+  .btn-container-zahtev {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .btn-container-zahtev button {
+    padding: 10px 20px;
+    background-color: #005bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  

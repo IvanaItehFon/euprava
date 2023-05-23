@@ -1,0 +1,73 @@
+.korisnik {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .row {
+    margin-bottom: 20px;
+  }
+  
+  .podaci {
+    width: 800px;
+    height: 200px;
+    background-color: #0056b3;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .btn-container {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .custom-table {
+    width: 800px;
+    background-color: white;
+    border-radius: 5px;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .custom-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .user {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .user:hover {
+    background-color: #007bff;
+  }
+  
+  .ime-prezime {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .email-jmbg,
+  .username {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
