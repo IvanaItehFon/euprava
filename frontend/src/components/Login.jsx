@@ -24,9 +24,6 @@ const Login = ({ setIsAdmin, setIsLoggedIn}) => {
         localStorage.setItem("role", response.data.role);
         setIsAdmin(response.data.role==="ADMIN")
         setIsLoggedIn(true);
-        // setIsLoggedIn(true);
-        // setIsAdmin(response.data.role==="ADMIN")
-        // navigate(`/movies`);
         navigate('/');
       })
       .catch((error) => {

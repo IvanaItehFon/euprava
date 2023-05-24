@@ -24,10 +24,8 @@ const Menu = ({ isAdmin }) => {
       )
         .then((response) => response.json())
         .then((response) => setCovidData(response.data.confirmed))
-        // .then((response) => console.log(response))
         .catch((err) => console.error(err));
     };
-    // fetchDataIP();
     fetchCovidData();
   }, [country]);
   useEffect(() => {
@@ -69,7 +67,6 @@ const Menu = ({ isAdmin }) => {
         {isAdmin && <Link to={'/novoObavestenje'} style={{ textDecoration: 'none' }}>
           <div className="item">
             <h1 style={{ textDecoration: "none" }}>Objavi obaveštenje</h1>
-            {/* <p style={{ textDecoration: "none" }}>Obavestenja</p> */}
           </div></Link>}
         {isAdmin === false && <Link to={'/noviZahtev'} style={{ textDecoration: 'none' }}>
           <div className="item">
@@ -96,11 +93,6 @@ const Menu = ({ isAdmin }) => {
             <h1 style={{ textDecoration: "none" }}>Euprava</h1>
             <p style={{ textDecoration: "none" }}>O nama</p>
           </div></Link>}
-        {/* {upozorenja?.length === 0 &&
-          <div className="item-disabled">
-            <h1 style={{ textDecoration: "none" }}>Upozorenja</h1>
-            <p style={{ textDecoration: "none" }}>Trenutno nema upozorenja</p>
-          </div>} */}
         {upozorenja?.length > 0 && isAdmin === false && <Link to={'/upozorenja'} style={{ textDecoration: 'none' }}>
           <div className="item" style={{ backgroundColor: 'red' }}>
             <h1 style={{ textDecoration: "none" }}>Upozorenja*</h1>

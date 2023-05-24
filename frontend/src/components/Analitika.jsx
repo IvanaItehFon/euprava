@@ -54,7 +54,6 @@ const Analitika = () => {
             });
     }, country)
 
-    // const [data, setData] = useState();
     useEffect(() => {
         const fetchDataUser = async () => {
             try {
@@ -128,7 +127,6 @@ const Analitika = () => {
                     .then(response => {
                         setMusko(response.data.content.filter((korisnik) => (korisnik.pol === "MUSKI")));
                         setZensko(response.data.content.filter((korisnik) => (korisnik.pol === "ZENSKI")));
-                        // console.log(zensko.length);
                     })
                     .catch(error => {
                         console.error(error);

@@ -14,7 +14,7 @@ const Obavestenje = ({ obavestenje, isAdmin, onDelete }) => {
         );
   
         console.log(response.data);
-        onDelete(id); // Notify the parent component about the deletion
+        onDelete(id);
       } catch (error) {
         console.error(error);
       }

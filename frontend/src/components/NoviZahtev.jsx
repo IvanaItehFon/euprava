@@ -8,14 +8,14 @@ const NoviZahtev = () => {
   const posaljiZahtev = async () => {
     
     const sadrzaj = document.getElementById('sadrzaj').value;
-    const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+    const token = localStorage.getItem('token');
     var dokument = document.getElementById('dokument');
     var formData = new FormData();
     formData.append("dokument", dokument.files[0]);
     try {
       const response = await axios.post('http://localhost:8080/api/v1/dokumentacija', formData, {
         headers: {
-          'Authorization': `Bearer ${token}`, // Add the bearer token to the request headers
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
         },
       });
@@ -31,7 +31,7 @@ const NoviZahtev = () => {
       })
       navigate('/zahtevi');
     } catch (error) {
-      console.error(error); // Handle the error
+      console.error(error);
     }
   };
   return (
@@ -40,10 +40,8 @@ const NoviZahtev = () => {
         <select name="language" id="tipUsluge">
           <option value="IZDAVANJE_PASOSA">Izdavanje pasosa</option>
           <option value="IZDAVANJE_LICNE_KARTE">Izdavanje licne karte</option>
-          {/* <option value="PITANJE">Postavljanje pitanja</option> */}
         </select>
         <label htmlFor="dokument" style={{ color: 'white' }}>Prosledite PDF dokument maksimalne velicine 1MB:</label>
-        {/* <input type="file" accept="application/pdf" name="" id="dokument"  placeholder="" style={{ width: '200px', height: '25px'}}/> */}
         <label htmlFor="dokument" style={{ display: 'flex', width: '200px', height: '25px', background: 'white', padding: '5px', alignItems: 'center', cursor: 'pointer', borderRadius: '5px', justifyContent: 'center' }}>
           <span>Custom File Input</span>
           <input type="file" accept="application/pdf" id="dokument" style={{ display: 'none' }} />

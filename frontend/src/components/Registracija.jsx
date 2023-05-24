@@ -46,13 +46,11 @@ const Registracija = () => {
         }
       });
 
-      console.log(response.data); // Handle the response data
+      console.log(response.data);
       navigate('/login');
     } catch (error) {
-      console.error(error); // Handle the error
+      console.error(error);
     }
-    // console.log(jmbg);
-    // console.log(username);
   };
   const [next, setNext] = useState(true);
   return (
@@ -95,76 +93,76 @@ const Registracija = () => {
               />
             </div>
             <div className="form-group">
-  <label style={{ color: "black" }}>Lozinka: </label>
-  <input
-    type="password"
-    className="form-control"
-    id="password"
-    onChange={(e) => setPassword(e.target.value)}
-  />
-</div>
-<div className="form-group">
-  <label style={{ color: "black" }}>Ime: </label>
-  <input
-    type="text"
-    className="form-control"
-    id="ime"
-    onChange={(e) => setFirstName(e.target.value)}
-  />
-</div>
-<div className="form-group">
-  <label style={{ color: "black" }}>Prezime: </label>
-  <input
-    type="text"
-    className="form-control"
-    id="prezime"
-    onChange={(e) => setLastNAme(e.target.value)}
-  />
-</div>
-<div className="form-group">
-  <label style={{ color: "black" }}>Email: </label>
-  <input
-    type="email"
-    className="form-control"
-    id="email"
-    onChange={(e) => setEmail(e.target.value)}
-  />
-</div>
-<div className="form-group">
-  <label style={{ color: "black" }}>JMBG: </label>
-  <input
-    type="text"
-    className="form-control"
-    id="jmbg"
-    onChange={(e) => setJMBG(e.target.value)}
-  />
-</div>
-<div className="form-group" style={{ marginLeft: '84px' }}>
-      <label style={{ color: "black", display: 'flex', alignItems: 'center' }}>
-        <input type="radio" name="gender" value="MUSKI" style={{ marginRight: '5px', verticalAlign: 'middle' }} onChange={(e) => setGender(e.target.value)} />
-        <span style={{ verticalAlign: 'middle' }}>Muski</span>
-      </label>
-      <label style={{ color: "black", display: 'flex', alignItems: 'center' }}>
-        <input type="radio" name="gender" value="ZENSKI" style={{ marginRight: '5px', verticalAlign: 'middle' }} onChange={(e) => setGender(e.target.value)} />
-        <span style={{ verticalAlign: 'middle' }}>Zenski</span>
-      </label>
-    </div>
+              <label style={{ color: "black" }}>Lozinka: </label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label style={{ color: "black" }}>Ime: </label>
+              <input
+                type="text"
+                className="form-control"
+                id="ime"
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label style={{ color: "black" }}>Prezime: </label>
+              <input
+                type="text"
+                className="form-control"
+                id="prezime"
+                onChange={(e) => setLastNAme(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label style={{ color: "black" }}>Email: </label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label style={{ color: "black" }}>JMBG: </label>
+              <input
+                type="text"
+                className="form-control"
+                id="jmbg"
+                onChange={(e) => setJMBG(e.target.value)}
+              />
+            </div>
+            <div className="form-group" style={{ marginLeft: '84px' }}>
+              <label style={{ color: "black", display: 'flex', alignItems: 'center' }}>
+                <input type="radio" name="gender" value="MUSKI" style={{ marginRight: '5px', verticalAlign: 'middle' }} onChange={(e) => setGender(e.target.value)} />
+                <span style={{ verticalAlign: 'middle' }}>Muski</span>
+              </label>
+              <label style={{ color: "black", display: 'flex', alignItems: 'center' }}>
+                <input type="radio" name="gender" value="ZENSKI" style={{ marginRight: '5px', verticalAlign: 'middle' }} onChange={(e) => setGender(e.target.value)} />
+                <span style={{ verticalAlign: 'middle' }}>Zenski</span>
+              </label>
+            </div>
 
 
-<div className="side-form">
+            <div className="side-form">
 
-</div>
-<div className="btn-container">
-  {isFilled && <button
-    type="submit"
-    className="btn-login"
-    id="login"
-    style={{ margin: "10px", marginLeft: '75px' }}
-    onClick={() => registerUser()}
-  >
-    Napravi nalog
-  </button>}
-</div>
+            </div>
+            <div className="btn-container">
+              {isFilled && <button
+                type="submit"
+                className="btn-login"
+                id="login"
+                style={{ margin: "10px", marginLeft: '75px' }}
+                onClick={() => registerUser()}
+              >
+                Napravi nalog
+              </button>}
+            </div>
           </div>
         </div>}
     </div>

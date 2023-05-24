@@ -14,7 +14,6 @@ const Sidebar = ({ isAdmin, isLoggedin }) => {
                         }
                     })
                     .then(response => {
-                        // console.log(response.data.ime + response.data.id);
                         setID(response.data.id)
                     })
                     .catch(error => {
@@ -26,8 +25,6 @@ const Sidebar = ({ isAdmin, isLoggedin }) => {
         };
         fetchDataUser();
     });
-    // console.log(id);
-    // console.log(isAdmin);
     return (
         <div className="container">
             <div className="sidebar">

@@ -121,7 +121,7 @@ const Zahtevi = ({ isAdmin }) => {
                                     <button
                                         className="user"
                                         onClick={(event) => {
-                                            event.stopPropagation(); // Prevent event propagation to the parent tr
+                                            event.stopPropagation();
                                             navigate('/korisnik/' + zahtev.podnosilac.id);
                                         }}
                                     >
@@ -153,7 +153,7 @@ const Zahtevi = ({ isAdmin }) => {
                                     <button
                                         className="user"
                                         onClick={(event) => {
-                                            event.stopPropagation(); // Prevent event propagation to the parent tr
+                                            event.stopPropagation();
                                             navigate('/korisnik/' + zahtev.podnosilac.id);
                                         }}
                                     >
@@ -168,7 +168,6 @@ const Zahtevi = ({ isAdmin }) => {
             <div className="btn-container" style={{ width: '765px', justifyContent: 'space-between', display: 'flex'}}>
                 <button onClick={() => setTip('IZDAVANJE_LICNE_KARTE')} className="uslov-btn">Zahtevi za izdavanje liče karte</button>
                 <button onClick={() => setTip('IZDAVANJE_PASOSA')} className="uslov-btn">Zahtevi za izdavanje pasoša</button>
-                {/* <button onClick={() => setTip('PITANJA')} className="uslov-btn">Pitanja</button> */}
                 <button onClick={() => setTip('SVI_ZAHTEVI')} className="uslov-btn">Svi zahtevi</button>
             </div>
             <div className="btn-container" style={{ width: '765px', justifyContent: 'space-between', display: 'flex' }}>
