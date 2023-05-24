@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/Login.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Login = ({ setIsAdmin, setIsLoggedIn}) => {
-
+  const [poruka, setPoruka] = useState('');
   useEffect(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
@@ -31,6 +31,7 @@ const Login = ({ setIsAdmin, setIsLoggedIn}) => {
       })
       .catch((error) => {
         console.error(error);
+        setPoruka('Pogrešno korisničko ime ili šifra');
       });
   };
 
@@ -65,7 +66,8 @@ const Login = ({ setIsAdmin, setIsLoggedIn}) => {
           >
             Prijavi se
           </button>
-        </div>
+          
+        </div><h1 style={{ color: 'red' }}>{poruka}</h1>
       </div>
     </div>
   );
