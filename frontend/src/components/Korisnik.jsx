@@ -117,19 +117,19 @@ const Korisnik = ({ isAdmin }) => {
   return (
     <div className="korisnik">
       <div className="podaci1" style={{ padding: '20px', width: '900px', height: '200px', display: 'flex', justifyContent: 'space-around', backgroundColor: "#007bff", borderRadius: '8px', margin: '20px' }}>
-        <div className="column podaci1" style={{ width: '400px', color: 'white' }}>
+        <div className="column podaci1" style={{ width: '370px', color: 'white' }}>
           <h2 className="ime-prezime">{korisnik?.ime} {korisnik?.prezime} ({korisnik?.role})</h2>
           <p className="email-jmbg">Email: {korisnik?.email}</p>
           <p className="email-jmbg">JMBG: {korisnik?.jmbg}</p>
           <p className="username">Korisničko ime: {korisnik?.username}</p>
         </div>
-        <div className="column podaci1" style={{ width: '300px', color: 'white' }}>
+        <div className="column podaci1" style={{ width: '350px', color: 'white' }}>
           <h2 className="ime-prezime">Pasoš</h2>
           <p className="email-jmbg">Broj pasoša: {pasos?.brojPasosa}</p>
           <p className="email-jmbg">Datum izdavanja: {pasos?.datumIzdavanja}</p>
           <p className="username">Datum važenja: {pasos?.datumVazenja}</p>
         </div>
-        <div className="column podaci1" style={{ width: '300px', color: 'white' }}>
+        <div className="column podaci1" style={{ width: '350px', color: 'white' }}>
           <h2 className="ime-prezime">Lična karta</h2>
           <p className="email-jmbg">Broj lične karte: {licnaKarta?.brojLicneKarte}</p>
           <p className="email-jmbg">Datum izdavanja: {licnaKarta?.datumIzdavanja}</p>

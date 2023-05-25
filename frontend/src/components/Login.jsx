@@ -36,7 +36,7 @@ const Login = ({ setIsAdmin, setIsLoggedIn}) => {
     <div className="center-content">
       <div className="login-form">
         <div className="form-group">
-          <label style={{ color: "black" }}>Korisnicko ime: </label>
+          <label style={{ color: "black" }}>Korisničko ime: </label>
           <input
             type="text"
             className="form-control"

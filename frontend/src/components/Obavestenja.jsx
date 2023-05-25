@@ -38,8 +38,6 @@ const Obavestenja = ({ isAdmin }) => {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-
-      // Refresh the data after successful deletion
       fetchData();
     } catch (error) {
       console.error(error);
